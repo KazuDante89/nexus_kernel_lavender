@@ -79,14 +79,24 @@ SCHED_FEAT(ENERGY_AWARE, true)
 SCHED_FEAT(ENERGY_AWARE, false)
 #endif
 
+SCHED_FEAT(HISI_FILTER, true)
+
 /*
- * Energy aware scheduling algorithm choices:
- * EAS_PREFER_IDLE
- *   Direct tasks in a schedtune.prefer_idle=1 group through
- *   the EAS path for wakeup task placement. Otherwise, put
- *   those tasks through the mainline slow path.
+ * Apply schedtune boost hold to tasks of all sched classes.
+ * If enabled, schedtune will hold the boost applied to a CPU
+ * for 50ms regardless of task activation - if the task is
+ * still running 50ms later, the boost hold expires and schedtune
+ * boost will expire immediately the task stops.
+ * If disabled, this behaviour will only apply to tasks of the
+ * RT class.
  */
-SCHED_FEAT(EAS_PREFER_IDLE, true)
+SCHED_FEAT(SCHEDTUNE_BOOST_HOLD_ALL, false)
+
+/*
+ * Bias schedtune boosted tasks to higher capacity CPUs.
+ * If disabled, no bias will be applied.
+ */
+SCHED_FEAT(STUNE_BOOST_BIAS_BIG, true)
 
 /*
  * Minimum capacity capping. Keep track of minimum capacity factor when
@@ -95,17 +105,3 @@ SCHED_FEAT(EAS_PREFER_IDLE, true)
  * restrictions.
  */
 SCHED_FEAT(MIN_CAPACITY_CAPPING, false)
-
-/*
- * Enforce the priority of candidates selected by find_best_target()
- * ON: If the target CPU saves any energy, use that.
- * OFF: Use whichever of target or backup saves most.
- */
-SCHED_FEAT(FBT_STRICT_ORDER, true)
-
-/*
- * Inflate the effective utilization of SchedTune-boosted tasks, which
- * generally leads to usage of higher frequencies.
- * If disabled, boosts will only bias tasks to higher-capacity CPUs.
- */
-SCHED_FEAT(SCHEDTUNE_BOOST_UTIL, false)
