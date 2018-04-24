@@ -5,6 +5,7 @@ config ARM64
 	select ACPI_REDUCED_HARDWARE_ONLY if ACPI
 	select ARCH_HAS_ATOMIC64_DEC_IF_POSITIVE
 	select ARCH_HAS_ELF_RANDOMIZE
+	select ARCH_HAS_FORTIFY_SOURCE
 	select ARCH_HAS_FAST_MULTIPLIER
 	select ARCH_HAS_GCOV_PROFILE_ALL
 	select ARCH_HAS_SG_CHAIN
@@ -1247,7 +1248,7 @@ config SYSVIPC_COMPAT
 config KEYS_COMPAT
 	def_bool y
 	depends on COMPAT && KEYS
-  
+
 config COMPAT_VDSO
 	bool "32-bit vDSO"
 	depends on COMPAT
