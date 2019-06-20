@@ -94,6 +94,8 @@ extern const uint16_t touch_key_array[TOUCH_KEY_NUM];
 
 #define NVT_TOUCH_PROC 1
 #define NVT_TOUCH_EXT_PROC 1
+#define NVT_TOUCH_MP 0
+#define MT_PROTOCOL_B 1
 #define WAKEUP_GESTURE 1
 #if WAKEUP_GESTURE
 extern const uint16_t gesture_key_array[];
@@ -105,6 +107,10 @@ extern const uint16_t gesture_key_array[];
 #define BOOT_UPDATE_FIRMWARE_NAME_SHENCHAO "novatek/shenchao_nt36672a_miui_f7a.bin"
 /* add by yangjiangzhu compatible to shenchao and tianma TP FW  2018/3/16  end */
 
+
+
+#define NVT_TOUCH_ESD_PROTECT 0
+#define NVT_TOUCH_ESD_CHECK_PERIOD 1500	/* ms */
 
 
 #define TOUCH_STATE_WORKING    0x00
