@@ -37,7 +37,7 @@ function finerr() {
         -d chat_id="$chat_id" \
         -d "disable_web_page_preview=true" \
         -d "parse_mode=markdown" \
-        -d text="Build threw an error(s)"
+        -d text="Build failed to compile"
     exit 1
 }
 # Compile plox
@@ -45,9 +45,9 @@ function compile() {
     make O=out ARCH=arm64 lavender-perf_defconfig
     make -j$(nproc --all) O=out \
                           ARCH=arm64 \
-			                    CC=clang \
-			                    CROSS_COMPILE=aarch64-linux-gnu- \
-			                    CROSS_COMPILE_ARM32=arm-linux-gnueabi-
+			  CC=clang \
+			  CROSS_COMPILE=aarch64-linux-gnu- \
+			  CROSS_COMPILE_ARM32=arm-linux-gnueabi-
 
     if ! [ -a "$IMAGE" ]; then
         finerr
