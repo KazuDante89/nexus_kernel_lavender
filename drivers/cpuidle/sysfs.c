@@ -135,7 +135,7 @@ static ssize_t store_use_deepest_state(struct device *dev,
 	if (ret != 1 || enable > 1)
 		return -EINVAL;
 
-	cpuidle_use_deepest_state_mask(cpu_online_mask, enable);
+	cpuidle_use_deepest_state(cpu_online_mask, enable);
 
 	return count;
 }
